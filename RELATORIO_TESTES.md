@@ -1,24 +1,54 @@
-# Relatório de testes — LuCrattiva
+# Validação — LuCrattiva refinada
 
-Data: 23/10/2026.
+Executada em 23/10/2026 no ambiente de desenvolvimento. Versão estática para homologação; nenhum deploy realizado.
 
-## Executados
+## Resultados executados
 
-- `python scripts/test_static.py` — **443 verificações, 0 falhas** nas 11 páginas HTML (inclui 404), links/arquivos locais, assets SVG, sitemap, JSON Vercel, JavaScript sintaticamente válido, presença de H1/descrição e estrutura comercial.
-- `node scripts/test_interactions.js` — **10 asserções passaram**: links WhatsApp distintos por segmento, tracking bloqueado antes do consentimento, carregamento GTM somente após aceite, evento após aceite, revogação com recarga. O GTM é um ID de teste apenas nesse script, não no site real.
-- `node --check assets/js/site.js` e `node --check assets/js/config.js` — sintaxe válida.
-- Parser CSS tinycss2: **217 regras, 0 erros de análise**.
-- Servidor local `python -m http.server`: **HTTP 200** para as 10 rotas do site, CSS, JS, SVG principal, sitemap e robots.txt.
-- ZIP testado para integridade (sem erros).
+| Verificação | Resultado |
+| --- | --- |
+| `python3 scripts/test_static.py` | 516 verificações, 11 HTMLs (10 rotas + 404), zero falhas |
+| `node --check assets/js/config.js` | Passou |
+| `node --check assets/js/site.js` | Passou |
+| `node scripts/test_interactions.js` | 29 verificações passaram |
+| `python3 scripts/test_browser.py --axe /workspace/artifacts/lucrattiva/axe.min.js` | 242 verificações passaram no Chromium real |
+| Requisições locais observadas no teste de navegador | 802 respostas; nenhuma com status de falha |
+| Erros JavaScript observados | Zero |
+| axe-core 4.14.0: tags WCAG 2 A/AA e 2.1 AA | 20 execuções: 10 rotas × desktop/mobile; zero violações automáticas |
 
-## Limitações
+A validação estática cobre links e assets locais referenciados pelo HTML/CSS, sintaxe JavaScript, idioma, H1 único, IDs duplicados, presença de formulário/CTA, SVG/XML, sitemap e configuração Vercel. Os testes originais foram mantidos e ampliados; não foram substituídos por verificações vazias.
 
-O navegador automatizado deste ambiente bloqueou o carregamento de URLs locais com `ERR_BLOCKED_BY_ADMINISTRATOR`. **Não foi possível validar renderização nem cliques reais no navegador nesta sessão.** As imagens incluídas em `references/` são conceitos visuais, não screenshots do site aberto.
+## Navegador
 
-## Pendências para homologação
+Chromium em modo headless, instalado em `/usr/bin/chromium`, controlado por Python Playwright. Larguras 360, 390, 430, 768, 1280, 1440 e 1920 px verificadas nas dez rotas, sem overflow horizontal. Capturas de comparação em 1440 e 390 px.
 
-1. Teste visual real em Chrome/Edge: 360, 390, 768, 1440px; navegação e acessibilidade de teclado.
-2. Teste manual de formulário → WhatsApp e comportamento dos pop-ups no navegador.
-3. Aprovar dados reais, logo, fotos, serviços, número comercial, e-mail e política de privacidade.
-4. Instalar GTM/GA4/Meta apenas após configuração e revisão de consentimento.
-5. Testar preview na Vercel; produção somente após aprovação.
+Comportamentos verificados: menu por toque e teclado, Escape, clique externo e retorno de foco; navegação entre setores; número centralizado nos CTAs; contexto de cada landing; pré-seleção editável; nome composto somente por espaços rejeitado; mensagem recuperável e respostas preservadas com abertura bloqueada; equipe gerada somente por dados com bio e links opcionais; filtro de URL insegura; rejeição e separação de estatísticas/publicidade; restauração de preferências; revogação; integração desativada por padrão; redução de movimento.
+
+WhatsApp foi simulado durante os testes: nenhuma mensagem foi enviada. GTM foi substituído por um stub em contextos isolados; nenhuma tag de publicidade real foi ativada. O ID de teste existe somente nos testes. O código de produção continua com ID vazio e `trackingReviewed: false`.
+
+## Acessibilidade e inspeção visual
+
+Os contrastes insuficientes encontrados nas primeiras execuções foram corrigidos. As 20 auditorias finais não detectaram violações nas regras selecionadas. O axe conserva resultados inconclusivos de contraste, sobretudo em elementos sobre imagens/gradientes. Foram inspecionados visualmente hero, cards, equipe, contato e uso em celular/desktop. Os inconclusivos permanecem no JSON de evidência; não são contabilizados como aprovações automáticas.
+
+Esta execução não certifica conformidade integral WCAG nem substitui teste com leitores de tela, usuários, Safari/iOS ou Android físico.
+
+## Evidências
+
+Capturas e relatório detalhado em `/workspace/artifacts/lucrattiva/`:
+
+- `home-desktop.png`, `home-mobile.png`: homepage completa, capturas reais.
+- `home-desktop-dobra.png`, `mobile-dobra.png`: primeira tela.
+- `desktop-areas.png`, `mobile-areas.png`: setores.
+- `<rota>-desktop.png`, `<rota>-mobile.png`: páginas internas completas.
+- `formulario-recuperacao.png`: formulário com recuperação da mensagem simulada.
+- `browser-results.json`: contagem, descrições dos testes e resultados axe, incluindo inconclusivos.
+- `antes-desktop.png`, `antes-mobile.png`: base original executada antes do refinamento.
+
+As imagens originais em `references/CONCEITO_*` são conceitos do ZIP, não capturas da implementação.
+
+## Limites e pendências
+
+Não foram executados deploy, entrega real de WhatsApp, homologação de container GTM/GA4/Meta, integração CRM, verificação de DNS, redirecionamentos de legado ou Lighthouse em hospedagem pública. Desempenho em servidor local não representa métricas de usuários reais.
+
+A página HBB indicada como referência recebeu 403 no CONNECT do proxy e não foi analisada visualmente. Os domínios foram adicionados ao rascunho da política de rede; a alteração salva não libera automaticamente o runtime.
+
+Precisam ser aprovados: logo oficial, contatos comerciais, responsáveis/CRC, endereço, domínio, escopo técnico, nomes/cargos/fotos e política de privacidade. A preview conserva `noindex` em HTML e no header Vercel. Publicar o ambiente de desenvolvimento e publicar o site são operações distintas.

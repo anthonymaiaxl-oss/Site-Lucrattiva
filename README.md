@@ -1,59 +1,111 @@
-# LuCrattiva — Site premium para Vercel
+# LuCrattiva Contabilidade
 
-Versão autoral concorrente para comparação visual e técnica com o Claude Design. **Protótipo**; ainda não publicado.
+Site estático para homologação, refinado a partir do protótipo enviado. HTML, CSS e JavaScript, sem framework, npm, build ou dependências de produção. A direção visual da home foi aprovada na conversa antes do refinamento das páginas internas. Nenhum deploy foi realizado.
 
-## Rodar agora (sem npm)
+## Executar
 
-- Abra um terminal na pasta do projeto.
-- Execute `python -m http.server 8080`
-- Acesse `http://localhost:8080/`
+Na raiz do repositório:
 
-O site é HTML/CSS/JS estático, sem dependências. Na Vercel, importe o repositório e selecione **Other** / sem build command; output directory vazio ou raiz.
+```sh
+python3 -m http.server 8080
+```
 
-## Páginas
+No Windows, `INICIAR_SITE_WINDOWS.bat`. O servidor é necessário para que os caminhos absolutos de assets funcionem; abrir o HTML diretamente pelo explorador de arquivos não é equivalente.
 
-`/`, `/agronegocio/`, `/industria/`, `/servicos/`, `/transportes/`, `/sobre/`, `/equipe/`, `/trocar-de-contador/`, `/contato/`, `/privacidade/`.
+Rotas: `/`, `/agronegocio/`, `/industria/`, `/servicos/`, `/transportes/`, `/trocar-de-contador/`, `/sobre/`, `/equipe/`, `/contato/`, `/privacidade/`. A página `404.html` atende ao fallback da Vercel.
 
-## Alterar fotos dos sócios e colaboradores
+## Editar a equipe: somente dados
 
-1. Coloque arquivos WebP/JPEG autorizados dentro de `assets/images/`, por exemplo `cristiane.webp`, `socio-2.webp`, `time-contabil.webp`. Ideal: proporção 4:5, resolução mínima 800×1000, otimizado para web.
-2. Abra `assets/js/config.js`. Em `team` altere `name`, `role`, `photo` e `alt` de cada pessoa. Ex.: `{name: 'Nome aprovado',role:'Sócia',photo:'/assets/images/cristiane.webp',alt:'Retrato profissional de ...'}`.
-3. Adicione novos perfis duplicando um `<article class="person-card" data-team-index="N">...</article>` nas páginas `index.html` e `equipe/index.html`; incremente o índice e inclua a entrada em `team`. Ou ajuste para um sistema de conteúdo (CMS) se preferir.
-4. Não publicar os placeholders de pessoas como se fossem fotos reais.
+Adicione, remova ou reordene objetos em `team`, em `assets/js/config.js`. Home e Equipe se atualizam automaticamente; não duplique HTML. Campos aceitos:
 
-## Alterar telefone, logo e tracking
+```js
+{
+  name: 'Nome autorizado',
+  role: 'Cargo aprovado',
+  photo: '/assets/images/equipe/retrato.webp',
+  alt: 'Retrato profissional de Nome autorizado',
+  bio: 'Biografia curta aprovada.', // opcional
+  socials: { LinkedIn: 'https://www.linkedin.com/in/perfil-autorizado/' } // opcional
+}
+```
 
-- WhatsApp e e-mail: `assets/js/config.js`. Todos os botões apontam para um número único com texto personalizado por setor.
-- Logo temporária: `assets/images/logo-mark.svg`; substitua pelo arquivo oficial aprovado.
-- Paleta e design: `assets/css/styles.css`.
-- Arte editorial original (não é foto da região): `assets/images/campo-editorial.svg`. Você pode substituí-la por imagens reais licenciadas sem mudar o HTML, atualizando CSS.
-- Google Tag Manager: `gtMId` em `assets/js/config.js`, mas **só após revisão da política de cookies e configuração correta de Consent Mode e respectivas tags**. Não há pixel configurado por padrão.
-- Eventos com consentimento de estatísticas: `whatsapp_click`, `whatsapp_form_intent`. São intenções, **não** contratos nem leads confirmados.
+Use fotografias próprias autorizadas em `assets/images/equipe/`, em WebP ou AVIF, proporção 4:5, idealmente 800 × 1000 px e arquivo otimizado. JPEG e PNG também são aceitos. URLs externas não são carregadas para fotografias de equipe. Uma imagem ausente ou inválida exibe “Foto a inserir”. Links de perfis exigem HTTPS. Os dados são inseridos como texto, sem interpretar HTML.
 
-## Antes de publicar
+Os três cartões atuais são espaços de áreas, sem nomes ou fotografias fictícias. Confirme os profissionais reais antes de publicar. A grade se adapta inclusive quando não há integrantes configurados.
 
-- Confirmar número WhatsApp e email, endereço, responsáveis técnicos, registro CRC e serviços de cada segmento. Não usar cadastro de terceiros como prova sem revisão.
-- Validar fotos/nome/cargo/biografias da equipe, e imagem/identidade oficial da marca.
-- Substituir minuta da política de privacidade por documento aprovado.
-- Decidir domínio: site atual `lucrattivacontabilidade.com.br`; confirmar acesso ao DNS.
-- Configurar redirecionamentos 301 das URLs PHP antigas com histórico de busca, se estiver substituindo o site atual.
-- Depois do deploy: revisar Lighthouse mobile, GSC, favicon, WhatsApp, formulários, consentimento, eventos, copy e responsividade.
-- Evitar alegar credenciais, resultados de clientes ou especialização técnica sem aprovação.
+## Contatos e WhatsApp
 
-## Conceito
+Edite `whatsapp`, `phoneDisplay`, `email` e `whatsappMessages` em `assets/js/config.js`. Telefone e e-mail do arquivo original foram preservados e ainda precisam de confirmação comercial. Não há envio automatizado de mensagens.
 
-Estilo editorial contemporâneo com tipografia serifada premium, floresta profunda, dourado fosco, respiros off-white, mapas de lavoura vetoriais, fotos substituíveis, páginas segmentadas e captação simples para WhatsApp.
+Os CTAs usam o mesmo número e mensagens específicas. As landings preselecionam o segmento do formulário, que continua editável. O formulário usa nome, segmento e necessidade opcional para preparar uma mensagem no dispositivo. A pessoa conclui o envio no WhatsApp; não existe cadastro de leads, backend ou CRM nesta versão.
 
-## Trabalhar pelo Codex
+Após preparar a mensagem, ficam disponíveis o link, o texto e botões para copiá-los. Os campos permanecem preenchidos mesmo se a abertura do WhatsApp falhar. CTAs diretos oferecem também “WhatsApp não abriu?”.
 
-`AGENTS.md` traz as regras do projeto; `CODEX_TASK.md` contém o briefing integral com prioridades e critérios de aceite. Abra a pasta/repositório no Codex e peça: **“Leia AGENTS.md e CODEX_TASK.md e execute a Fase A e depois a Fase B.”**
+## Visual e assets
 
-## Testar no Windows
+- `assets/css/styles.css`: base herdada e componentes existentes.
+- `assets/css/experience.css`: fontes locais, navegação, equipe, consentimento e recuperação de WhatsApp.
+- `assets/css/home.css`: composição editorial da home.
+- `assets/css/pages.css`: landings e páginas institucionais.
+- `assets/js/site.js`: interações compartilhadas.
+- `assets/ASSETS.md`: origem das imagens e licenças das fontes.
 
-Dê dois cliques em `INICIAR_SITE_WINDOWS.bat` (requer Python instalado) e abra **http://localhost:8080/** no navegador. Depois rode `TESTAR_SITE_WINDOWS.bat` para a verificação automática de links, arquivos, JavaScript e metadados. O teste automático não substitui validação visual real.
+Paisagens e cenas setoriais são ilustrações geradas por IA, identificadas nas páginas; não são fotos de propriedades, instalações ou clientes da LuCrattiva. Logo provisória e fotos de equipe precisam de validação. As fontes Manrope e Cormorant Garamond são locais e têm licenças incluídas. Nenhuma fonte ou imagem depende de um CDN durante a visita.
 
-Nas páginas de segmento, o formulário já marca a respectiva área de atuação. Antes de compartilhar com pessoas externas, confirme os dados reais em `assets/js/config.js`.
+A referência HBB indicada pelo usuário não pôde ser consultada: o proxy retornou HTTP 403 no túnel HTTPS. Os domínios necessários foram registrados no rascunho de rede; salvar esse rascunho não aplica a liberação ao ambiente atual. Não houve reprodução de conteúdo ou assets da HBB.
 
-## Teste de eventos (Node)
+## Privacidade e eventos
 
-Rode `node scripts/test_interactions.js` para testar, sem dados reais, geração de links WhatsApp, evento de intenção e consentimento/revogação de tags opcionais.
+Estatísticas e publicidade têm escolhas separadas, recusáveis e revogáveis pelo botão fixo ou pela página Privacidade. O consentimento fica no armazenamento local; se ele não estiver disponível, o site mantém a escolha somente durante a sessão. A política é uma minuta, sujeita à aprovação do controlador de dados.
+
+A configuração entregue contém `gtMId: ''` e `trackingReviewed: false`. Nenhuma tag Google ou Meta é carregada. Preencher um ID sem habilitar a revisão também não ativa o container.
+
+Uma futura ativação exige auditoria do container, finalidade e política aprovadas. O código prepara Consent Mode v2 com todas as categorias negadas antes de inicializar o container e atualiza cada categoria conforme a escolha. A revogação de qualquer categoria previamente concedida atualiza o consentimento e recarrega a página para remover código opcional já executado. Um container real deve respeitar as categorias também em suas próprias tags; sua homologação não foi realizada aqui.
+
+Com consentimento de estatísticas, os eventos locais de intenção são:
+
+| Evento | Disparo | Campos |
+| --- | --- | --- |
+| `whatsapp_click` | CTA de WhatsApp | `segment`, `page_path`, `cta_position` |
+| `whatsapp_form_intent` | Preparação da mensagem pelo formulário | `segment`, `page_path`, `cta_position` |
+| `sector_cta_click` | Card ou navegação entre setores | `segment`, `page_path`, `cta_position` |
+
+Não são contratos, conversas concluídas ou clientes adquiridos. Nome e necessidade do formulário nunca entram nesses eventos. `utm_source`, `utm_medium` e `utm_campaign` da URL podem acompanhar eventos consentidos se forem identificadores curtos contendo somente letras ASCII, números, `_` e `-`. Não coloque dados pessoais em UTMs. Não há armazenamento de atribuição entre sessões, exportação ou integração com CRM. Isso exigirá especificação e revisão próprias.
+
+## Verificar
+
+```sh
+python3 scripts/test_static.py
+node --check assets/js/config.js
+node --check assets/js/site.js
+node scripts/test_interactions.js
+```
+
+A validação opcional de desenvolvimento usa Python Playwright e Chromium, com o servidor em execução:
+
+```sh
+python3 scripts/test_browser.py --artifacts /tmp/lucrattiva-validacao
+```
+
+O ambiente preparado já oferece Python Playwright e `/usr/bin/chromium`. Em outra máquina, instale o Playwright em um ambiente virtual de desenvolvimento e ajuste o caminho do navegador em `scripts/test_browser.py` se necessário. Esses pacotes não fazem parte do site ou do deploy.
+
+Para incluir a auditoria automatizada de acessibilidade, passe `--axe /caminho/axe.min.js` (distribuição oficial de `axe-core`, apenas para desenvolvimento). Relatórios registram separadamente violações e verificações inconclusivas. Isso não é certificação integral de acessibilidade.
+
+O teste de navegador simula WhatsApp e GTM em contextos isolados; não envia mensagens nem ativa rastreamento real. As capturas são do site executando no Chromium, diferentes das imagens conceituais originais da pasta `references/`.
+
+## Vercel e publicação
+
+O projeto é compatível com Vercel: preset **Other**, raiz do repositório, sem comando de instalação/build e saída na raiz. `vercel.json` conserva URLs com barra final e headers básicos. Não há SPA ou catch-all que transforme rotas inexistentes em HTTP 200.
+
+Esta entrega é de homologação: `noindex,nofollow` nos HTMLs e `X-Robots-Tag: noindex, nofollow` na configuração Vercel. O sitemap usa o domínio herdado, ainda a confirmar. O robots.txt permite leitura das páginas para que os robôs possam observar o `noindex`.
+
+Antes de um deploy público de produção, mediante autorização:
+
+1. Confirmar logo, telefone comercial, e-mail, domínio, responsáveis/CRC, serviços, endereço e modalidades de atendimento. Não há dados legais ou resultados de clientes inventados.
+2. Incluir equipe e fotografias reais autorizadas e aprovar a minuta de privacidade.
+3. Confirmar canonical, Open Graph e sitemap para o domínio final. Não há schema de serviços com credenciais não aprovadas.
+4. Decidir a política de indexação da produção: remover o header global `X-Robots-Tag` e alterar as páginas públicas para `index,follow`; manter homologação e erros fora do índice. Não faça essa mudança automaticamente na preview.
+5. Inventariar URLs antigas antes de criar redirects 301. Nenhuma origem ou destino foi presumido.
+6. Revalidar o deploy real, inclusive HTTP, imagens de compartilhamento, navegação, consentimento e WhatsApp. Nenhuma publicação ou avaliação Lighthouse da Vercel foi feita nesta tarefa.
+
+A publicação do ambiente na nuvem salva sua configuração e snapshot de desenvolvimento. Ela é distinta de publicar o site na Vercel.
