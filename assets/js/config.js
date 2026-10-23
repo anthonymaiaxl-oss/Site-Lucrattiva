@@ -17,6 +17,22 @@ window.LUCRATTIVA = {
   // Inclua somente relatos reais com autorização. Campos: quote, name,
   // company (opcional), role (opcional), approved: true após aprovação.
   testimonials: [],
+  // Demonstrações fictícias solicitadas para avaliar o layout. Nunca são relatos reais.
+  showTestimonialExamples: true,
+  testimonialExamples: [
+    {
+      quote: 'Uma boa parceria, para mim, é poder conversar com clareza sobre a rotina do negócio e entender os próximos passos.',
+      name: 'Cliente de exemplo 01', company: 'Empresa fictícia · Agronegócio'
+    },
+    {
+      quote: 'Organização e comunicação fazem diferença no dia a dia. É esse tipo de proximidade que procuro em uma equipe contábil.',
+      name: 'Cliente de exemplo 02', company: 'Empresa fictícia · Indústria'
+    },
+    {
+      quote: 'Gosto de um atendimento que escuta antes de orientar e respeita o momento de cada empresa.',
+      name: 'Cliente de exemplo 03', company: 'Empresa fictícia · Serviços'
+    }
+  ],
   team: [
     // Trocar os valores de exemplo pelas informações aprovadas.
     { name: 'Direção e sociedade', role: 'Liderança da LuCrattiva', photo: '', alt: '', bio: '' },

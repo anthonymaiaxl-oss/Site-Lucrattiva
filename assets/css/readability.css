@@ -1,0 +1,177 @@
+/* Shared reading scale. The existing Manrope and Cormorant families are preserved. */
+:root{--reading-size:16px;--support-size:14px;--label-size:12px}
+body{font-size:var(--reading-size);line-height:1.7}
+body .topline{font-size:12px;letter-spacing:.11em}
+body .topline-content{height:36px}
+body .header-inner{gap:16px;min-height:96px}
+body .wordmark{min-width:210px}
+body .wordmark-sub{font-size:10px;letter-spacing:.08em;line-height:1.5}
+body .nav{gap:18px}
+body .nav>a,body .nav-drop-trigger{font-size:14px;line-height:1.5;font-weight:600}
+body .dropdown-menu{width:265px}
+body .dropdown-menu a{font-size:14px;line-height:1.6;min-height:44px}
+body .header .btn{font-size:14px;gap:18px;padding:13px 16px;min-height:50px}
+body.home-page .eyebrow,body.inner-page .eyebrow,
+body.home-page .hero .eyebrow,body.inner-page .page-hero .eyebrow{font-size:12px;letter-spacing:.12em;line-height:1.7}
+body.home-page .hero p,body.inner-page .page-hero p{font-size:17px;line-height:1.85;max-width:540px}
+body.home-page .section-sub,body.inner-page .section-sub,
+body.home-page .manifesto-copy>p,body.home-page .team-intro p,
+body.home-page .process-card p,body.home-page .sector-card p,
+body.inner-page .page-content-grid p,body.inner-page .small-feature-card p,
+body .testimonials-intro>div>p,body .testimonials-empty p,
+body.home-page .contact-grid>div>p,body.inner-page .contact-grid>div>p,
+body.home-page .faq-item p,body.inner-page .faq-item p,
+body.inner-page .text-page p,body.inner-page .text-page li,
+body .change-checklist p,body .checklist p,body .contact-options p{
+  font-size:16px;line-height:1.85;
+}
+body.home-page .section-sub,body.inner-page .section-sub{max-width:440px}
+body.home-page .hero-buttons .btn,
+body.home-page .contact-grid .btn-outline-light,
+body.inner-page .contact-grid .btn-outline-light,
+body.inner-page .page-hero .btn,
+body.inner-page .page-content-grid .btn,
+body.inner-page .cta-band .btn,
+body .switch-section .btn,body .contact-options .btn,
+body.home-page .form-submit,body.inner-page .form-submit{
+  font-size:14px;line-height:1.6;min-height:52px;gap:18px;
+}
+body.home-page .text-arrow,body.inner-page .text-arrow,
+body .testimonials-empty .text-arrow,body .hero-secondary{font-size:14px;line-height:1.7;gap:18px}
+body.home-page .hero-note small{font-size:12px;line-height:1.7;letter-spacing:.1em}
+body.home-page .hero-below,body.home-page .hero-below strong,
+body .hero-origin{font-size:12px;line-height:1.8;letter-spacing:.08em}
+body .hero-coordinate{font-size:12px;letter-spacing:.12em}
+body .hero-scroll{font-size:12px;letter-spacing:.1em;line-height:1.6}
+body .art-caption,body .page-art-caption,body .manifesto-caption,body .image-caption{
+  font-size:12px;line-height:1.7;letter-spacing:0;
+}
+body.home-page .manifesto-tag,body .image-overline{font-size:12px;letter-spacing:.1em;line-height:1.7}
+body.home-page .manifesto-quote>span{font-size:12px;letter-spacing:.1em;line-height:1.8}
+body.home-page .sector-card{min-height:455px}
+body.home-page .sector-index{font-size:12px;letter-spacing:.08em;padding:9px 11px}
+body.home-page .sector-kicker{font-size:12px;letter-spacing:.08em;line-height:1.7}
+body.home-page .sector-card p{min-height:88px}
+body .sector-more{font-size:13px;line-height:1.7;gap:12px;margin-top:20px;padding-top:17px}
+body.home-page .sector-footnote,body.home-page .team-help,body.inner-page .team-help{
+  font-size:13px;line-height:1.8;
+}
+body.home-page .value-line strong{font-size:15px;line-height:1.7}
+body.home-page .value-line small{font-size:14px;line-height:1.8}
+body.home-page .value-line>span:first-child{font-size:12px;line-height:1.8}
+body.home-page .switch-section .eyebrow{font-size:12px;line-height:1.7}
+body.home-page .switch-section p{font-size:16px;line-height:1.8}
+body .person-info small,body.home-page .person-info small{font-size:14px;line-height:1.8;letter-spacing:.04em}
+body .person-bio{font-size:15px;line-height:1.8}
+body .person-socials a{font-size:14px;line-height:1.8}
+body .portrait-placeholder span:not(.portrait-monogram),
+body.home-page .portrait-placeholder span:not(.portrait-monogram){font-size:12px;line-height:1.7;letter-spacing:.08em}
+body .testimonial-quote{font-size:32px;line-height:1.35}
+body .testimonial-name{font-size:16px;line-height:1.8}
+body .testimonial-detail{font-size:14px;line-height:1.8}
+body .testimonials-empty-label{font-size:12px;line-height:1.7;letter-spacing:.1em}
+body .contact-signature p{font-size:14px;line-height:1.8}
+body .contact-signature small{font-size:13px;line-height:1.8;margin-top:5px}
+body.home-page .contact-card p,body.inner-page .contact-card p{font-size:15px;line-height:1.8}
+body.home-page .contact-card label,body.inner-page .contact-card label{font-size:14px;line-height:1.7;margin-top:18px}
+body.home-page .contact-card input,body.home-page .contact-card select,body.home-page .contact-card textarea,
+body.inner-page .contact-card input,body.inner-page .contact-card select,body.inner-page .contact-card textarea{
+  font-size:16px;line-height:1.6;padding:12px;min-height:50px;
+}
+body.home-page .contact-card .form-checkbox input,body.inner-page .contact-card .form-checkbox input{min-height:18px}
+body.home-page .contact-card .form-checkbox label,body.inner-page .contact-card .form-checkbox label{
+  font-size:13px;line-height:1.8;margin:0;
+}
+body.home-page .form-disclaimer,body.inner-page .form-disclaimer{font-size:13px;line-height:1.8}
+body.home-page .faq-item summary,body.inner-page .faq-item summary{font-size:16px;line-height:1.8;gap:18px}
+body .breadcrumbs{font-size:13px;line-height:1.7;gap:13px}
+body.inner-page .sector-navigation a{font-size:15px;line-height:1.6;gap:12px}
+body.inner-page .sector-navigation a>span{font-size:12px}
+body .option-number{font-size:12px;line-height:1.8;letter-spacing:.08em}
+body .contact-email{font-size:14px;line-height:1.9}
+body .contact-note{font-size:14px;line-height:1.8}
+body .contact-options p[data-public-phone]{font-size:30px;line-height:1.4}
+body .privacy-aside>p{font-size:16px;line-height:1.8}
+body .privacy-aside .btn{font-size:14px;line-height:1.7;white-space:normal}
+body .privacy-aside>span{font-size:13px;line-height:1.8}
+body.inner-page .text-page>p:first-child{font-size:15px;line-height:1.85}
+body .footer .footer-brand p,body .footer .footer-contact p{font-size:14px;line-height:1.9}
+body .footer-links a,body .footer-contact a{font-size:14px;line-height:1.8}
+body .footer h4{font-size:13px;line-height:1.8}
+body .footer .text-arrow{font-size:14px;line-height:1.8;gap:14px}
+body .footer-bottom{font-size:13px;line-height:1.9;flex-wrap:wrap}
+body .consent-banner{max-width:470px}
+body .consent-banner p{font-size:14px;line-height:1.8}
+body .consent-banner strong{font-size:26px;line-height:1.2}
+body .consent-buttons button{font-size:13px;line-height:1.6;min-height:44px}
+body .consent-preferences label{font-size:14px;line-height:1.8}
+body .cookie-reopen{font-size:12px;line-height:1.5;padding:7px 10px;min-height:32px}
+body .whatsapp-fallback p,body .whatsapp-fallback button,body .whatsapp-fallback a,
+body .whatsapp-recovery-panel label,body .copy-status{font-size:14px;line-height:1.8}
+body .whatsapp-recovery-trigger{font-size:13px;line-height:1.5}
+body .whatsapp-recovery-panel textarea{font-size:16px;line-height:1.7}
+
+/* The wider reading scale gets a full disclosure menu on intermediate screens. */
+@media(max-width:1199px){
+  body .header-cta{display:none}
+  body .hamburger{display:block;margin-left:auto;min-height:44px;min-width:44px}
+  body .header .nav{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;margin:0;padding:18px 28px 26px;max-height:calc(100dvh - 100px);overflow:auto;background:#faf9f5;border-bottom:1px solid #d8dfd0;box-shadow:0 16px 30px #041e1720}
+  body .header .nav.open{display:flex!important}
+  body .nav>a,body .nav-drop-trigger{font-size:16px;min-height:48px;padding:12px 0}
+  body .dropdown-menu{position:static;box-shadow:none;border:0;background:transparent;width:100%;padding:0 0 8px 15px}
+  body .dropdown-menu a{font-size:15px;min-height:44px;padding:10px}
+}
+@media(max-width:940px){
+  body.inner-page .sector-navigation a{font-size:14px;padding-left:12px;padding-right:12px;gap:10px}
+}
+@media(max-width:700px){
+  body .header-inner{min-height:85px}
+  body .wordmark-title{font-size:32px}
+  body .wordmark-sub{font-size:10px;letter-spacing:.06em}
+  body .topline{font-size:12px;letter-spacing:.08em}
+  body .topline-content{height:34px}
+  body.home-page .hero p,body.inner-page .page-hero p{font-size:16px;line-height:1.85;max-width:100%}
+  body.home-page .eyebrow,body.inner-page .eyebrow,
+  body.home-page .hero .eyebrow,body.inner-page .page-hero .eyebrow{font-size:12px;line-height:1.8;letter-spacing:.09em}
+  body.home-page .hero-grid{padding-top:48px;padding-bottom:75px}
+  body.home-page .hero-note{max-width:250px;margin-top:40px}
+  body.home-page .hero-note small{font-size:12px;line-height:1.8}
+  body.home-page .hero-below,body.home-page .hero-below strong{font-size:12px;line-height:1.8;letter-spacing:.05em}
+  body .hero-scroll{font-size:10px;letter-spacing:.08em}
+  body .page-art-caption{font-size:12px;max-width:270px;text-align:right}
+  body.home-page .sector-card{min-height:430px}
+  body.home-page .sector-card p{min-height:0}
+  body.home-page .sector-kicker{font-size:12px;letter-spacing:.06em}
+  body .sector-more{font-size:14px;line-height:1.8}
+  body.home-page .manifesto-art{min-height:475px}
+  body.home-page .manifesto-tag{font-size:12px;max-width:260px;line-height:1.8}
+  body.home-page .manifesto-quote>span{font-size:12px;line-height:1.8}
+  body.home-page .manifesto-caption{font-size:12px;line-height:1.7}
+  body.home-page .value-line strong{font-size:15px}
+  body.home-page .value-line small{font-size:14px}
+  body.home-page .team-help,body.inner-page .team-help{font-size:13px;line-height:1.8}
+  body .testimonial-quote{font-size:30px;line-height:1.4}
+  body .testimonial-name{font-size:16px}
+  body .testimonial-detail{font-size:14px}
+  body.inner-page .sector-navigation a{font-size:13px;padding:12px 7px;gap:9px}
+  body.inner-page .sector-navigation a:nth-child(even){padding-left:12px}
+  body.inner-page .sector-navigation a>span{font-size:12px}
+  body .breadcrumbs{font-size:12px;line-height:1.8}
+  body .contact-signature small{font-size:13px}
+  body.home-page .contact-card,body.inner-page .contact-card{padding:27px 22px}
+  body.home-page .contact-card .form-checkbox label,body.inner-page .contact-card .form-checkbox label{font-size:13px;line-height:1.8}
+  body.home-page .form-disclaimer,body.inner-page .form-disclaimer{font-size:13px}
+  body .consent-banner{max-width:none}
+  body .consent-buttons button{font-size:13px}
+  body .footer .wordmark-sub{font-size:10px}
+  body .footer-bottom{font-size:13px;line-height:1.9}
+  body .whatsapp-recovery-panel{max-height:65dvh}
+}
+
+/* Keep secondary labels readable as well as the main paragraphs. */
+body .hero-scroll{font-size:12px}
+body.home-page .ribbon-label,body.home-page .ribbon-label strong{font-size:12px;line-height:1.8;letter-spacing:.04em}
+body.home-page .ribbon-row>a>span{font-size:12px}
+@media(min-width:941px) and (max-width:1100px){body.home-page .ribbon-row>a{gap:8px;padding-left:10px;padding-right:10px}}
+@media(min-width:701px) and (max-width:940px){body.home-page .ribbon-row>a{gap:8px;padding-left:10px;padding-right:10px}}
+@media(max-width:700px){body.home-page .ribbon-row>a{gap:7px;padding-left:7px;padding-right:7px}body.home-page .ribbon-row>a:nth-of-type(even){padding-left:9px}}

@@ -15,6 +15,12 @@
 .testimonials-empty p{font-size:12px;line-height:1.9;color:#4e634d;max-width:610px}
 .testimonials-empty .text-arrow{position:relative;z-index:1;white-space:nowrap}
 .testimonials-page .testimonials-intro{margin-bottom:35px}
+.testimonials-example-notice{margin:0 0 25px;padding:18px 22px;border:1px solid #c9b78c;background:#efe9d9;color:#584523;font-size:14px;line-height:1.85}
+.testimonials-example-notice strong{font-weight:700}
+.testimonial-example-badge{display:block;align-self:flex-start;border:1px solid #c9b78c;padding:7px 10px;margin-bottom:23px;background:#efe9d9;color:#584523;font-size:12px;font-weight:650;line-height:1.7;letter-spacing:.04em}
+.testimonials-grid{align-items:stretch}
+.testimonial-card{display:flex;flex-direction:column}
+.testimonial-quote{flex:1}
 @media(max-width:1100px){.testimonials-intro{gap:50px}.testimonials-grid{gap:17px}.testimonial-card{padding:25px}.testimonial-quote{font-size:27px}.testimonials-empty{padding:35px;gap:25px}}
 @media(max-width:940px){.testimonials-intro{gap:35px}.testimonials-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.testimonials-empty{grid-template-columns:1fr;gap:22px}.testimonials-empty .text-arrow{justify-self:start}.testimonial-card{padding:27px}}
 @media(max-width:700px){.testimonials-intro{grid-template-columns:1fr;gap:22px;margin-bottom:30px}.testimonials-intro>div>p{font-size:12px;max-width:100%;margin-bottom:15px}.testimonials-grid{grid-template-columns:1fr;gap:18px}.testimonial-card{padding:27px 24px}.testimonial-quote{font-size:29px;line-height:1.3}.testimonial-mark{font-size:68px}.testimonial-person{padding-top:17px}.testimonial-name{font-size:12px}.testimonial-detail{font-size:11px}.testimonials-empty{padding:28px 25px;gap:23px}.testimonials-empty h3{font-size:31px;line-height:1.08}.testimonials-empty p{font-size:12px;line-height:1.9}.testimonials-empty-label{font-size:7px;letter-spacing:.13em}.testimonials-empty:after{inset:10px}.testimonials-empty .text-arrow{white-space:normal;font-size:10px}}

@@ -125,15 +125,16 @@ with sync_playwright() as p:
     page.locator('[data-consent-open]').click()
     check(page.locator('[data-consent-preferences]').is_visible(), 'Privacy page can reopen preferences')
     page.locator('[data-consent-reject]').click()
-    # No fabricated production quotes: the empty state is visible until approved data exists.
+    # User-requested demonstration cards must be clearly labelled as fictional.
     page.goto(args.base_url + '/', wait_until='networkidle')
-    check(page.locator('#depoimentos [data-testimonials-empty]').is_visible(), 'Honest empty state on home')
-    check(page.locator('#depoimentos .testimonial-card').count() == 0, 'No fabricated testimonial cards')
+    check(page.locator('#depoimentos [data-testimonials-example-notice]').is_visible(), 'Fictional demonstration notice is visible on home')
+    check(page.locator('#depoimentos .testimonial-card').count() == 3, 'Three requested example cards on home')
+    check(page.locator('#depoimentos .testimonial-example-badge').count() == 3, 'Each demonstration is individually labelled fictional')
     page.set_viewport_size({'width': 1440, 'height': 1000})
     page.locator('[data-main-nav] a[href="#depoimentos"]').click()
     check(page.url.endswith('/#depoimentos'), 'Testimonials menu reaches homepage section')
     check(page.locator('#depoimentos').is_visible(), 'Testimonials remain in the main homepage')
-    check(page.locator('[data-testimonials-empty]').is_visible(), 'Homepage section has honest empty state')
+    check(page.locator('[data-testimonials-empty]').is_hidden(), 'Example cards replace empty state')
     fixture_config = Path(__file__).resolve().parents[1].joinpath('assets/js/config.js').read_text()
     testimonials = [dict(quote='Texto sintético para validar o componente, sem representar um cliente real.', name=f'Autor de teste {i}', company='Empresa de teste', role='Cargo de teste', approved=True) for i in range(4)]
     testimonials[0]['name'] = '<img src=x onerror=alert(1)>'
@@ -144,6 +145,8 @@ with sync_playwright() as p:
         q = open_page(tc, path)
         check(q.locator('.testimonial-card').count() == expected, f'All approved valid entries: {path}')
         check(q.locator('[data-testimonials-empty]').is_hidden(), f'Empty state replaced when approved data exists: {path}')
+        check(q.locator('.testimonial-example-badge').count() == 0, 'Approved real records are not mixed with fictional examples')
+        check(q.locator('[data-testimonials-example-notice]').is_hidden(), 'Example notice hidden when approved real records exist')
         check(q.locator('.testimonial-name').first.text_content() == '<img src=x onerror=alert(1)>', 'Testimonial names inserted as text')
         check(q.locator('.testimonial-card img').count() == 0, 'Testimonial data cannot inject markup')
         check(q.locator('.testimonial-detail').first.text_content() == 'Cargo de teste · Empresa de teste', 'Optional testimonial attribution')
@@ -156,6 +159,12 @@ with sync_playwright() as p:
             check(not v, f'Approved testimonial card accessibility: {path}: {[x["id"] for x in v]}')
         q.close()
     tc.close()
+    empty_context = browser.new_context()
+    empty_context.route('**/assets/js/config.js', lambda r: r.fulfill(content_type='text/javascript', body=fixture_config + '\nwindow.LUCRATTIVA.testimonials=[];window.LUCRATTIVA.showTestimonialExamples=false;'))
+    empty_page = open_page(empty_context)
+    check(empty_page.locator('[data-testimonials-empty]').is_visible(), 'Examples can be disabled without editing HTML')
+    check(empty_page.locator('.testimonial-card').count() == 0, 'Disabled examples do not masquerade as approved testimonials')
+    empty_context.close()
     # Changing the configuration updates both the count and optional fields without HTML edits.
     team_config = Path(__file__).resolve().parents[1].joinpath('assets/js/config.js').read_text()
     dynamic = browser.new_context()

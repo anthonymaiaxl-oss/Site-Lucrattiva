@@ -37,7 +37,9 @@ Os três cartões atuais são espaços de áreas, sem nomes ou fotografias fict�
 
 O item **Depoimentos** do menu e do rodapé leva diretamente à seção da página inicial, em `/#depoimentos`. Todos os relatos aprovados são exibidos na home, usando a lista `testimonials`, em `assets/js/config.js`. A URL `/depoimentos/` continua disponível para manter os links existentes.
 
-A lista entregue está vazia: não foram criadas falas, avaliações ou identidades de clientes. Enquanto não houver relatos aprovados, aparece um estado informativo, sem cartões fictícios ou estrelas de avaliação.
+A lista de relatos reais `testimonials` permanece vazia. A pedido do usuário, `showTestimonialExamples: true` mostra três exemplos fictícios da lista separada `testimonialExamples`. Eles têm aviso geral e a identificação “Depoimento de teste · fictício” em cada cartão, com autores e empresas explicitamente ilustrativos. Não há estrelas ou notas de avaliação.
+
+Para retirar os exemplos, defina `showTestimonialExamples: false`. Sem relatos reais aprovados, aparece então o estado informativo. Quando houver pelo menos um relato real aprovado, os exemplos são automaticamente ocultados, sem misturar avaliações autorizadas e demonstrações.
 
 Para publicar um relato real, com autorização para o texto e identificação, adicione um objeto com `quote` (relato), `name` (autor), `company` e `role` (opcionais) e `approved: true`. Relatos sem aprovação explícita, nome ou texto válido não são exibidos. Remover uma entrada ou definir `approved: false` retira o cartão das duas páginas. Não é necessário alterar HTML.
 
@@ -57,6 +59,8 @@ Após preparar a mensagem, ficam disponíveis o link, o texto e botões para cop
 - `assets/css/experience.css`: fontes locais, navegação, equipe, consentimento e recuperação de WhatsApp.
 - `assets/css/home.css`: composição editorial da home.
 - `assets/css/pages.css`: landings e páginas institucionais.
+- `assets/css/testimonials.css`: cartões, avisos de demonstração e estados dos depoimentos.
+- `assets/css/readability.css`: escala final de leitura compartilhada, mantendo as famílias originais; textos principais de 16–17 px, apoio de 14 px, legendas de 12–13 px e menu adaptado para telas intermediárias.
 - `assets/js/site.js`: interações compartilhadas.
 - `assets/ASSETS.md`: origem das imagens e licenças das fontes.
 

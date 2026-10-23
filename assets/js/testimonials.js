@@ -1,10 +1,15 @@
 (() => {
   'use strict';
-  const entries = window.LUCRATTIVA?.testimonials;
+  const cfg = window.LUCRATTIVA || {};
+  const entries = cfg.testimonials;
   const text = value => typeof value === 'string' ? value.trim() : '';
   const approved = (Array.isArray(entries) ? entries : []).filter(entry =>
     entry && entry.approved === true && text(entry.quote) && text(entry.name)
   );
+  const showExamples = approved.length === 0 && cfg.showTestimonialExamples === true;
+  const examples = showExamples && Array.isArray(cfg.testimonialExamples)
+    ? cfg.testimonialExamples.filter(entry => entry && text(entry.quote) && text(entry.name)) : [];
+  const display = approved.length ? approved : examples;
   const create = (tag, className, value) => {
     const el = document.createElement(tag);
     el.className = className;
@@ -14,11 +19,13 @@
   document.querySelectorAll('[data-testimonials]').forEach(section => {
     const grid = section.querySelector('[data-testimonials-grid]');
     const empty = section.querySelector('[data-testimonials-empty]');
+    const notice = section.querySelector('[data-testimonials-example-notice]');
     if (!grid) return;
     const limit = Number(section.getAttribute('data-testimonials-limit'));
-    const visible = limit > 0 ? approved.slice(0, limit) : approved;
+    const visible = limit > 0 ? display.slice(0, limit) : display;
     const cards = visible.map(entry => {
       const card = create('figure', 'testimonial-card');
+      if (showExamples) card.append(create('span', 'testimonial-example-badge', 'Depoimento de teste · fictício'));
       const mark = create('span', 'testimonial-mark', '“');
       mark.setAttribute('aria-hidden', 'true');
       const quote = create('blockquote', 'testimonial-quote', text(entry.quote));
@@ -32,5 +39,6 @@
     grid.replaceChildren(...cards);
     grid.hidden = !cards.length;
     if (empty) empty.hidden = !!cards.length;
+    if (notice) notice.hidden = !(showExamples && cards.length);
   });
 })();

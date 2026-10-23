@@ -70,3 +70,15 @@ O menu e o rodapé agora levam à seção `/#depoimentos`, e a home mostra todos
 ### Faixa de setores ampliada
 
 A faixa abaixo do hero passou de 95 para 138 px de altura mínima no desktop e os nomes de 13 para 19 px. Tablet e celular receberam tamanhos proporcionais. A faixa foi validada em dez larguras de 360 a 1920 px, sem overflow na página ou nos links individuais. Capturas em `/workspace/artifacts/faixa-setores-maior-1440.png` e `/workspace/artifacts/faixa-setores-maior-390.png`.
+
+## Exemplos fictícios e revisão de legibilidade
+
+A pedido explícito do usuário, foram acrescentados três depoimentos fictícios para testar o visual. Eles usam uma lista separada dos relatos reais, exibem um aviso geral e o rótulo “Depoimento de teste · fictício” em cada cartão. As identificações dizem “Cliente de exemplo” e “Empresa fictícia”. Não há fotografias, notas ou estrelas inventadas. Os exemplos desaparecem automaticamente quando existe algum relato real aprovado; também podem ser desativados em `showTestimonialExamples`.
+
+A leitura foi revista em todas as páginas, preservando as famílias verificadas no navegador: Manrope nos textos e Cormorant nos títulos. Parágrafos principais usam 16–17 px, controles e apoio usam 14–16 px, notas e legendas usam 12–13 px. A assinatura tipográfica do logotipo continua menor e foi ampliada em relação à versão inicial. O menu passa ao modo expansível em telas intermediárias para acomodar a escala maior sem reduzir os textos.
+
+Passaram 601 verificações estáticas, 29 verificações de interação existentes e 304 verificações no Chromium, com 1031 respostas locais observadas sem falhas. Após o ajuste final dos pequenos rótulos, a revisão complementar validou **132 combinações de rota/largura**, além de **22 auditorias axe**, sem overflow ou violações automáticas nas regras selecionadas. Os limites das verificações de acessibilidade e os inconclusivos permanecem registrados.
+
+Os testes agora verificam aviso e rótulo em cada exemplo, a separação de relatos aprovados e fictícios, a desativação dos exemplos, a preservação de dados como texto e a ausência de tags opcionais indevidas. O relatório final de escala está em `/workspace/artifacts/lucrattiva-legibilidade/final-readability.json`; o relatório funcional está em `browser-results.json` no mesmo diretório.
+
+Capturas finais: `home-desktop-atualizada.png`, `home-mobile-atualizada.png`, `depoimentos-desktop-atualizados.png` e `depoimentos-mobile-atualizados.png`, em `/workspace/artifacts/lucrattiva-legibilidade/`.
