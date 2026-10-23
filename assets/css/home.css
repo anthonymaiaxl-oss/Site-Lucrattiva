@@ -13,3 +13,32 @@
 /* Keep reading comfortable while retaining the editorial hierarchy. */
 .home-page .hero p{font-size:14px}.home-page .section-sub,.home-page .manifesto-copy>p,.home-page .team-intro p,.home-page .contact-grid>div>p{font-size:13px}.home-page .sector-card p,.home-page .process-card p,.home-page .faq-item p{font-size:12px}.home-page .sector-kicker{font-size:7px}.home-page .faq-item summary{font-size:12px}.home-page .value-line strong{font-size:12px}.home-page .value-line small{font-size:11px}.home-page .sector-footnote,.home-page .team-help{font-size:9px}.home-page .switch-section p{font-size:12px}.home-page .hero-note{min-width:220px}.home-page .ribbon-label{color:#52664e}.home-page .ribbon-row>a>span{color:#715b35}.home-page .value-line>span:first-child{color:#715b35}.home-page .switch-section p{color:#475e49}
 @media(max-width:700px){.home-page .hero p{font-size:12px;max-width:310px}.home-page .section-sub,.home-page .manifesto-copy>p,.home-page .team-intro p,.home-page .contact-grid>div>p{font-size:12px}.home-page .sector-card p,.home-page .process-card p,.home-page .faq-item p{font-size:12px}.home-page .hero-note{min-width:180px}.home-page .team-help,.home-page .sector-footnote{font-size:9px}.home-page .value-line strong{font-size:12px}.home-page .value-line small{font-size:11px}.home-page .faq-item summary{font-size:12px}.home-page .switch-section p{font-size:11px}}
+
+/* More prominence for the economic sectors directly below the hero. */
+.home-page .ribbon-row{min-height:138px}
+.home-page .ribbon-label{font-size:11px;line-height:1.9;letter-spacing:.08em}
+.home-page .ribbon-label strong{font-size:12px;letter-spacing:.06em}
+.home-page .ribbon-row>a{font-size:19px;gap:14px;padding-top:12px;padding-bottom:12px}
+.home-page .ribbon-row>a>span{font-size:10px}
+.home-page .ribbon-row>a i,.home-page .ribbon-row .arrow-svg{width:20px;height:20px;font-size:20px}
+@media(min-width:941px) and (max-width:1100px){
+  .home-page .ribbon-row>a{font-size:16px;padding-left:13px;padding-right:13px;gap:10px}
+  .home-page .ribbon-label{font-size:9px}
+  .home-page .ribbon-label strong{font-size:10px}
+}
+@media(min-width:701px) and (max-width:940px){
+  .home-page .ribbon-row{min-height:146px;padding-top:22px;padding-bottom:22px}
+  .home-page .ribbon-row>a{font-size:15px;padding:10px 12px;gap:10px}
+  .home-page .ribbon-row>a>span{font-size:9px}
+  .home-page .ribbon-label,.home-page .ribbon-label strong{font-size:10px}
+  .home-page .ribbon-row>a i,.home-page .ribbon-row .arrow-svg{width:18px;height:18px;font-size:18px}
+}
+@media(max-width:700px){
+  .home-page .ribbon-row{min-height:0;padding-top:23px;padding-bottom:16px}
+  .home-page .ribbon-label{font-size:9px;margin-bottom:18px}
+  .home-page .ribbon-label strong{font-size:10px}
+  .home-page .ribbon-row>a{font-size:14px;min-height:58px;padding:14px 9px;gap:9px}
+  .home-page .ribbon-row>a:nth-of-type(even){padding-left:13px}
+  .home-page .ribbon-row>a>span{font-size:9px}
+  .home-page .ribbon-row>a i,.home-page .ribbon-row .arrow-svg{width:16px;height:16px;font-size:16px}
+}

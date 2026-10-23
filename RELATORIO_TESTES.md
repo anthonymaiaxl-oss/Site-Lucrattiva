@@ -62,3 +62,11 @@ Validação da atualização: **591 verificações estáticas**, **29 verificaç
 As verificações novas usam apenas dados sintéticos em contextos de teste isolados: descartam relatos sem aprovação, nome ou texto válidos; exibem somente três na home e todos na página completa; preservam o conteúdo como texto sem permitir injeção de HTML; verificam atribuição opcional, layout com relatos preenchidos em dez larguras e o estado vazio honesto. Esses dados não fazem parte da configuração publicada.
 
 Evidências desta atualização: `/workspace/artifacts/lucrattiva-depoimentos/browser-results.json`, `/workspace/artifacts/depoimentos-desktop.png`, `/workspace/artifacts/depoimentos-mobile.png` e `/workspace/artifacts/depoimentos-home-desktop.png`.
+
+### Acesso direto pela página principal
+
+O menu e o rodapé agora levam à seção `/#depoimentos`, e a home mostra todos os relatos aprovados. A URL dedicada foi preservada para links existentes. Na verificação deste ajuste, 588 checagens estáticas passaram. Foram executados seis cenários reais de navegação (home, indústria e página dedicada, em desktop de 1440 px e celular de 390 px), confirmando destino na home, seção acessível, ausência de overflow e fechamento do menu móvel. O teste de navegador existente foi atualizado para refletir a navegação pela âncora.
+
+### Faixa de setores ampliada
+
+A faixa abaixo do hero passou de 95 para 138 px de altura mínima no desktop e os nomes de 13 para 19 px. Tablet e celular receberam tamanhos proporcionais. A faixa foi validada em dez larguras de 360 a 1920 px, sem overflow na página ou nos links individuais. Capturas em `/workspace/artifacts/faixa-setores-maior-1440.png` e `/workspace/artifacts/faixa-setores-maior-390.png`.

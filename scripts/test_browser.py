@@ -130,19 +130,19 @@ with sync_playwright() as p:
     check(page.locator('#depoimentos [data-testimonials-empty]').is_visible(), 'Honest empty state on home')
     check(page.locator('#depoimentos .testimonial-card').count() == 0, 'No fabricated testimonial cards')
     page.set_viewport_size({'width': 1440, 'height': 1000})
-    page.locator('[data-main-nav] a[href="/depoimentos/"]').click()
-    check(page.url.endswith('/depoimentos/'), 'Testimonials tab reaches dedicated page')
-    check(page.locator('[data-main-nav] a[href="/depoimentos/"]').get_attribute('aria-current') == 'page', 'Testimonials tab reflects current page')
-    check(page.locator('[data-testimonials-empty]').is_visible(), 'Dedicated page has honest empty state')
+    page.locator('[data-main-nav] a[href="#depoimentos"]').click()
+    check(page.url.endswith('/#depoimentos'), 'Testimonials menu reaches homepage section')
+    check(page.locator('#depoimentos').is_visible(), 'Testimonials remain in the main homepage')
+    check(page.locator('[data-testimonials-empty]').is_visible(), 'Homepage section has honest empty state')
     fixture_config = Path(__file__).resolve().parents[1].joinpath('assets/js/config.js').read_text()
     testimonials = [dict(quote='Texto sintético para validar o componente, sem representar um cliente real.', name=f'Autor de teste {i}', company='Empresa de teste', role='Cargo de teste', approved=True) for i in range(4)]
     testimonials[0]['name'] = '<img src=x onerror=alert(1)>'
     testimonials.extend([dict(quote='Rascunho não autorizado', name='Rascunho', approved=False), dict(quote='Sem aprovação explícita', name='Sem aprovação'), dict(quote=42, name='Dado inválido', approved=True)])
     tc = browser.new_context()
     tc.route('**/assets/js/config.js', lambda r: r.fulfill(content_type='text/javascript', body=fixture_config + '\nwindow.LUCRATTIVA.testimonials=' + json.dumps(testimonials) + ';'))
-    for path, expected in [('/', 3), ('/depoimentos/', 4)]:
+    for path, expected in [('/', 4), ('/depoimentos/', 4)]:
         q = open_page(tc, path)
-        check(q.locator('.testimonial-card').count() == expected, f'Only approved valid entries; homepage limit: {path}')
+        check(q.locator('.testimonial-card').count() == expected, f'All approved valid entries: {path}')
         check(q.locator('[data-testimonials-empty]').is_hidden(), f'Empty state replaced when approved data exists: {path}')
         check(q.locator('.testimonial-name').first.text_content() == '<img src=x onerror=alert(1)>', 'Testimonial names inserted as text')
         check(q.locator('.testimonial-card img').count() == 0, 'Testimonial data cannot inject markup')

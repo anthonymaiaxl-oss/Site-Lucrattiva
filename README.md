@@ -35,7 +35,7 @@ Os três cartões atuais são espaços de áreas, sem nomes ou fotografias fict�
 
 ## Editar depoimentos de clientes
 
-A aba **Depoimentos** abre `/depoimentos/`. A home mostra até três relatos; a página completa exibe todos os aprovados. Ambas usam a mesma lista `testimonials`, em `assets/js/config.js`.
+O item **Depoimentos** do menu e do rodapé leva diretamente à seção da página inicial, em `/#depoimentos`. Todos os relatos aprovados são exibidos na home, usando a lista `testimonials`, em `assets/js/config.js`. A URL `/depoimentos/` continua disponível para manter os links existentes.
 
 A lista entregue está vazia: não foram criadas falas, avaliações ou identidades de clientes. Enquanto não houver relatos aprovados, aparece um estado informativo, sem cartões fictícios ou estrelas de avaliação.
 
