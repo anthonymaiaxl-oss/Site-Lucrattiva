@@ -52,3 +52,13 @@ Não foram executados deploy, entrega real de WhatsApp, homologação de contain
 A página HBB indicada como referência recebeu 403 no CONNECT do proxy e não foi analisada visualmente. Os domínios foram adicionados ao rascunho da política de rede; a alteração salva não libera automaticamente o runtime.
 
 Precisam ser aprovados: logo oficial, contatos comerciais, responsáveis/CRC, endereço, domínio, escopo técnico, nomes/cargos/fotos e política de privacidade. A preview conserva `noindex` em HTML e no header Vercel. Publicar o ambiente de desenvolvimento e publicar o site são operações distintas.
+
+## Atualização: aba Depoimentos
+
+A atualização inclui `/depoimentos/`, entrada no menu e no rodapé de todas as páginas e uma seção na home. A lista de relatos permanece vazia até receber textos e identificações reais autorizados. Não foram criados depoimentos ou avaliações fictícias.
+
+Validação da atualização: **591 verificações estáticas**, **29 verificações de interação existentes** e **296 verificações no Chromium** passaram. O navegador observou **956 respostas locais**, sem falhas de assets ou erros JavaScript. As **22 auditorias automatizadas das 11 rotas em desktop/mobile** não apontaram violações nas regras WCAG selecionadas; os limites e resultados inconclusivos de contraste continuam registrados no JSON.
+
+As verificações novas usam apenas dados sintéticos em contextos de teste isolados: descartam relatos sem aprovação, nome ou texto válidos; exibem somente três na home e todos na página completa; preservam o conteúdo como texto sem permitir injeção de HTML; verificam atribuição opcional, layout com relatos preenchidos em dez larguras e o estado vazio honesto. Esses dados não fazem parte da configuração publicada.
+
+Evidências desta atualização: `/workspace/artifacts/lucrattiva-depoimentos/browser-results.json`, `/workspace/artifacts/depoimentos-desktop.png`, `/workspace/artifacts/depoimentos-mobile.png` e `/workspace/artifacts/depoimentos-home-desktop.png`.

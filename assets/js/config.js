@@ -14,6 +14,9 @@ window.LUCRATTIVA = {
     transportes: 'Olá, LuCrattiva! Vim pelo site, pela área de transportes, e gostaria de conversar com a equipe.',
     troca: 'Olá, LuCrattiva! Vim pelo site e gostaria de entender como funciona a troca de contador.'
   },
+  // Inclua somente relatos reais com autorização. Campos: quote, name,
+  // company (opcional), role (opcional), approved: true após aprovação.
+  testimonials: [],
   team: [
     // Trocar os valores de exemplo pelas informações aprovadas.
     { name: 'Direção e sociedade', role: 'Liderança da LuCrattiva', photo: '', alt: '', bio: '' },

@@ -12,7 +12,7 @@ python3 -m http.server 8080
 
 No Windows, `INICIAR_SITE_WINDOWS.bat`. O servidor é necessário para que os caminhos absolutos de assets funcionem; abrir o HTML diretamente pelo explorador de arquivos não é equivalente.
 
-Rotas: `/`, `/agronegocio/`, `/industria/`, `/servicos/`, `/transportes/`, `/trocar-de-contador/`, `/sobre/`, `/equipe/`, `/contato/`, `/privacidade/`. A página `404.html` atende ao fallback da Vercel.
+Rotas: `/`, `/agronegocio/`, `/industria/`, `/servicos/`, `/transportes/`, `/trocar-de-contador/`, `/sobre/`, `/equipe/`, `/contato/`, `/privacidade/`, `/depoimentos/`. A página `404.html` atende ao fallback da Vercel.
 
 ## Editar a equipe: somente dados
 
@@ -32,6 +32,16 @@ Adicione, remova ou reordene objetos em `team`, em `assets/js/config.js`. Home e
 Use fotografias próprias autorizadas em `assets/images/equipe/`, em WebP ou AVIF, proporção 4:5, idealmente 800 × 1000 px e arquivo otimizado. JPEG e PNG também são aceitos. URLs externas não são carregadas para fotografias de equipe. Uma imagem ausente ou inválida exibe “Foto a inserir”. Links de perfis exigem HTTPS. Os dados são inseridos como texto, sem interpretar HTML.
 
 Os três cartões atuais são espaços de áreas, sem nomes ou fotografias fictícias. Confirme os profissionais reais antes de publicar. A grade se adapta inclusive quando não há integrantes configurados.
+
+## Editar depoimentos de clientes
+
+A aba **Depoimentos** abre `/depoimentos/`. A home mostra até três relatos; a página completa exibe todos os aprovados. Ambas usam a mesma lista `testimonials`, em `assets/js/config.js`.
+
+A lista entregue está vazia: não foram criadas falas, avaliações ou identidades de clientes. Enquanto não houver relatos aprovados, aparece um estado informativo, sem cartões fictícios ou estrelas de avaliação.
+
+Para publicar um relato real, com autorização para o texto e identificação, adicione um objeto com `quote` (relato), `name` (autor), `company` e `role` (opcionais) e `approved: true`. Relatos sem aprovação explícita, nome ou texto válido não são exibidos. Remover uma entrada ou definir `approved: false` retira o cartão das duas páginas. Não é necessário alterar HTML.
+
+O componente não carrega fotos, scripts de avaliações ou serviços externos. Nenhum schema de avaliações ou nota agregada foi adicionado. A autorização de publicação deve ser registrada pela empresa fora do site; o campo é apenas um controle editorial.
 
 ## Contatos e WhatsApp
 

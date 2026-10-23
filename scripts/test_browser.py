@@ -17,7 +17,7 @@ artifacts.mkdir(parents=True, exist_ok=True)
 checks = []
 errors = []
 responses = []
-routes = ['/', '/agronegocio/', '/industria/', '/servicos/', '/transportes/', '/trocar-de-contador/', '/sobre/', '/equipe/', '/contato/', '/privacidade/']
+routes = ['/', '/agronegocio/', '/industria/', '/servicos/', '/transportes/', '/trocar-de-contador/', '/sobre/', '/equipe/', '/contato/', '/privacidade/', '/depoimentos/']
 
 def check(value, label):
     if not value:
@@ -125,6 +125,37 @@ with sync_playwright() as p:
     page.locator('[data-consent-open]').click()
     check(page.locator('[data-consent-preferences]').is_visible(), 'Privacy page can reopen preferences')
     page.locator('[data-consent-reject]').click()
+    # No fabricated production quotes: the empty state is visible until approved data exists.
+    page.goto(args.base_url + '/', wait_until='networkidle')
+    check(page.locator('#depoimentos [data-testimonials-empty]').is_visible(), 'Honest empty state on home')
+    check(page.locator('#depoimentos .testimonial-card').count() == 0, 'No fabricated testimonial cards')
+    page.set_viewport_size({'width': 1440, 'height': 1000})
+    page.locator('[data-main-nav] a[href="/depoimentos/"]').click()
+    check(page.url.endswith('/depoimentos/'), 'Testimonials tab reaches dedicated page')
+    check(page.locator('[data-main-nav] a[href="/depoimentos/"]').get_attribute('aria-current') == 'page', 'Testimonials tab reflects current page')
+    check(page.locator('[data-testimonials-empty]').is_visible(), 'Dedicated page has honest empty state')
+    fixture_config = Path(__file__).resolve().parents[1].joinpath('assets/js/config.js').read_text()
+    testimonials = [dict(quote='Texto sintético para validar o componente, sem representar um cliente real.', name=f'Autor de teste {i}', company='Empresa de teste', role='Cargo de teste', approved=True) for i in range(4)]
+    testimonials[0]['name'] = '<img src=x onerror=alert(1)>'
+    testimonials.extend([dict(quote='Rascunho não autorizado', name='Rascunho', approved=False), dict(quote='Sem aprovação explícita', name='Sem aprovação'), dict(quote=42, name='Dado inválido', approved=True)])
+    tc = browser.new_context()
+    tc.route('**/assets/js/config.js', lambda r: r.fulfill(content_type='text/javascript', body=fixture_config + '\nwindow.LUCRATTIVA.testimonials=' + json.dumps(testimonials) + ';'))
+    for path, expected in [('/', 3), ('/depoimentos/', 4)]:
+        q = open_page(tc, path)
+        check(q.locator('.testimonial-card').count() == expected, f'Only approved valid entries; homepage limit: {path}')
+        check(q.locator('[data-testimonials-empty]').is_hidden(), f'Empty state replaced when approved data exists: {path}')
+        check(q.locator('.testimonial-name').first.text_content() == '<img src=x onerror=alert(1)>', 'Testimonial names inserted as text')
+        check(q.locator('.testimonial-card img').count() == 0, 'Testimonial data cannot inject markup')
+        check(q.locator('.testimonial-detail').first.text_content() == 'Cargo de teste · Empresa de teste', 'Optional testimonial attribution')
+        for width in [360, 390, 430, 768, 941, 1024, 1100, 1280, 1440, 1920]:
+            q.set_viewport_size({'width': width, 'height': 1000})
+            check(q.evaluate('document.documentElement.scrollWidth <= innerWidth'), f'Populated testimonials do not overflow: {path} @ {width}')
+        if args.axe:
+            q.add_script_tag(path=args.axe)
+            v = q.evaluate('async () => (await axe.run(document,{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}})).violations')
+            check(not v, f'Approved testimonial card accessibility: {path}: {[x["id"] for x in v]}')
+        q.close()
+    tc.close()
     # Changing the configuration updates both the count and optional fields without HTML edits.
     team_config = Path(__file__).resolve().parents[1].joinpath('assets/js/config.js').read_text()
     dynamic = browser.new_context()
