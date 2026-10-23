@@ -19,6 +19,7 @@ class HTMLAudit(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.references = []
         self.ids = set()
+        self.duplicate_ids = []
         self.markers = []
         self.headings = []
         self.lang = False
@@ -26,7 +27,9 @@ class HTMLAudit(HTMLParser):
     def handle_starttag(self, name, attrs):
         a = dict(attrs)
         if name == 'html': self.lang = a.get('lang') == 'pt-BR'
-        if 'id' in a: self.ids.add(a['id'])
+        if 'id' in a:
+            if a['id'] in self.ids: self.duplicate_ids.append(a['id'])
+            self.ids.add(a['id'])
         if name in ('a','link','img','script','source'):
             for k in ('href','src','srcset'):
                 if a.get(k): self.references.append((name,k,a[k]))
@@ -50,7 +53,7 @@ for page in PAGES:
     h.feed(page.read_text(encoding='utf-8'))
     if rel != '404.html':
         assert_check(h.lang, f'{rel}: atributo lang pt-BR')
-        assert_check('h1' in h.headings, f'{rel}: precisa de H1')
+        assert_check(h.headings.count('h1') == 1, f'{rel}: precisa de exatamente um H1')
         assert_check(h.meta_description, f'{rel}: meta description')
         assert_check('whatsapp' in h.markers, f'{rel}: CTA WhatsApp')
         assert_check('consent' in h.markers, f'{rel}: banner de consentimento')
@@ -64,13 +67,19 @@ for page in PAGES:
         dest = (ROOT / path.lstrip('/')) if path.startswith('/') else (page.parent / path)
         if dest.is_dir(): dest = dest / 'index.html'
         assert_check(dest.is_file(), f'{rel}: {tag}.{attr} -> {ref} não encontrado')
-    assert_check(len(h.ids)==len(set(h.ids)), f'{rel}: IDs únicos')
+    assert_check(not h.duplicate_ids, f'{rel}: IDs duplicados: {h.duplicate_ids}')
     print(f'  ✓ {rel} | H1={h.headings.count("h1")}, CTAs={h.markers.count("whatsapp")}')
 
 for file in ROOT.glob('assets/**/*.svg'):
     try: ET.parse(file)
     except Exception as e: ERRORS.append(f'SVG inválido: {file.name}: {e}')
     CHECKS += 1
+for css in ROOT.glob('assets/css/*.css'):
+    content = css.read_text(encoding='utf-8')
+    assert_check('@import' not in content, f'{css.name}: fontes devem ser locais')
+    for ref in re.findall(r'url\([\'"]?([^\)\'"\s]+)', content):
+        if ref.startswith(('data:', 'https:', 'http:')): continue
+        assert_check((css.parent / ref).resolve().is_file(), f'{css.name}: asset ausente: {ref}')
 try: ET.parse(ROOT/'sitemap.xml')
 except Exception as e: ERRORS.append('Sitemap XML inválido: '+str(e))
 CHECKS += 1
