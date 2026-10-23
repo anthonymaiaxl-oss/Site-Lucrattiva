@@ -1,0 +1,17 @@
+.git/
+.vercel/
+.env*
+node_modules/
+__pycache__/
+*.pyc
+AGENTS.md
+CODEX_TASK.md
+AUDITORIA.md
+README.md
+RELATORIO_TESTES.md
+INICIAR_SITE_WINDOWS.bat
+TESTAR_SITE_WINDOWS.bat
+references/
+scripts/
+assets/ASSETS.md
+assets/images/equipe/LEIA-ME.md
