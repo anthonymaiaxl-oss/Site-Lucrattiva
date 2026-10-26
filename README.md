@@ -2,6 +2,18 @@
 
 Site estático para homologação, refinado a partir do protótipo enviado. HTML, CSS e JavaScript, sem framework, npm, build ou dependências de produção. A direção visual da home foi aprovada na conversa antes do refinamento das páginas internas. Nenhum deploy foi realizado.
 
+## Revisão institucional local — 26/10/2026
+
+A versão do Gabriel continua sendo a base. A home agora apresenta: abertura explícita sobre contabilidade; apresentação da empresa sem repetir a paisagem; frentes contábil, fiscal e de pessoal; agronegócio em destaque e os demais setores como caminhos complementares; etapas do atendimento e explicação do contato a distância. As páginas Sobre e Agronegócio receberam textos mais diretos. A navegação inclui acesso aos serviços.
+
+`assets/css/refinements.css` contém o refinamento sobre a identidade existente, preservando marca, cores e famílias de fonte. Links `data-service-topic` preparam o assunto do formulário apenas quando o campo está vazio. Não há novos serviços externos, analytics ou alterações de contatos.
+
+A apresentação institucional é exclusiva das duas sócias, conforme pedido do usuário. A configuração `team` contém somente dois espaços de nome/foto, claramente identificados como apresentação em preparação. Home e página “As sócias” usam a mesma configuração; a URL `/equipe/` foi preservada por compatibilidade. Não há apresentação de funcionários nem nomes ou retratos fictícios. Os depoimentos de demonstração solicitados anteriormente continuam claramente identificados como testes e são substituídos quando houver relatos reais aprovados.
+
+As referências a Nova Mutum e Mato Grosso foram retiradas da apresentação pública, dos metadados e da configuração. Não foi incluída promessa de cobertura nacional, prazo de resposta ou serviço técnico específico não confirmado. As modalidades e o escopo são alinhados com a equipe.
+
+Entrega navegável portátil: `LuCrattiva-Gabriel-Atualizado.html`, incluindo páginas internas. A atualização está preparada para revisão no GitHub; a publicação na Vercel é uma etapa separada. A pasta independente `Lucrattiva-Institucional-Local` permanece de lado, sem alterações nesta revisão.
+
 ## Executar
 
 Na raiz do repositório:
@@ -31,7 +43,7 @@ Adicione, remova ou reordene objetos em `team`, em `assets/js/config.js`. Home e
 
 Use fotografias próprias autorizadas em `assets/images/equipe/`, em WebP ou AVIF, proporção 4:5, idealmente 800 × 1000 px e arquivo otimizado. JPEG e PNG também são aceitos. URLs externas não são carregadas para fotografias de equipe. Uma imagem ausente ou inválida exibe “Foto a inserir”. Links de perfis exigem HTTPS. Os dados são inseridos como texto, sem interpretar HTML.
 
-Os três cartões atuais são espaços de áreas, sem nomes ou fotografias fictícias. Confirme os profissionais reais antes de publicar. A grade se adapta inclusive quando não há integrantes configurados.
+Os dois cartões atuais são espaços para as duas sócias, com nomes e fotografias a inserir. Use somente dados autorizados. A grade se adapta inclusive quando não há integrantes configurados.
 
 ## Editar depoimentos de clientes
 

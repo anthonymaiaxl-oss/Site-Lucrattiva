@@ -212,6 +212,13 @@
     if (e.relatedTarget && !nav.contains(e.relatedTarget) && e.relatedTarget !== toggle) closeMenu();
   });
 
+  $$('[data-service-topic]').forEach(link => link.addEventListener('click', () => {
+    const issue = document.querySelector('[data-lead-form] [name=issue]');
+    if (issue && !issue.value.trim()) {
+      issue.value = `Gostaria de conversar sobre ${link.getAttribute('data-service-topic')}.`;
+    }
+  }));
+
   const segmentByPath = { '/agronegocio/': 'agro', '/industria/': 'industria', '/servicos/': 'servicos', '/transportes/': 'transportes', '/trocar-de-contador/': 'troca' };
   $$('[data-lead-form]').forEach(form => {
     const select = $('[name=segment]', form);

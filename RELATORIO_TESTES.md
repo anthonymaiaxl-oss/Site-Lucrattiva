@@ -82,3 +82,21 @@ Passaram 601 verificações estáticas, 29 verificações de interação existen
 Os testes agora verificam aviso e rótulo em cada exemplo, a separação de relatos aprovados e fictícios, a desativação dos exemplos, a preservação de dados como texto e a ausência de tags opcionais indevidas. O relatório final de escala está em `/workspace/artifacts/lucrattiva-legibilidade/final-readability.json`; o relatório funcional está em `browser-results.json` no mesmo diretório.
 
 Capturas finais: `home-desktop-atualizada.png`, `home-mobile-atualizada.png`, `depoimentos-desktop-atualizados.png` e `depoimentos-mobile-atualizados.png`, em `/workspace/artifacts/lucrattiva-legibilidade/`.
+
+## Revisão institucional local — 26/10/2026
+
+- 618 verificações estáticas aprovadas, 12 arquivos HTML e sintaxe JavaScript válida.
+- 29 verificações de interação sem dependências aprovadas.
+- 304 verificações em Chromium aprovadas, com 1.104 respostas locais verificadas e nenhum erro JavaScript ou asset com falha.
+- 22 auditorias axe-core nas páginas e configurações cobertas pela suíte, sem violações automáticas WCAG A/AA.
+- 19 verificações adicionais das mudanças: destaque agro íntegro em 13 larguras (360 a 1920 px), duas auditorias axe da home final, assuntos de serviço sem perda de resposta e operação por teclado.
+- A inspeção visual identificou e corrigiu a ausência de `display:block` no destaque agro em celular; as verificações adicionais confirmam que seu conteúdo permanece dentro do cartão e não se sobrepõe aos outros blocos.
+- Depoimentos de teste continuam identificados como fictícios. A grade de retratos da home fica oculta enquanto não há fotos locais configuradas; edição central da equipe e página própria permanecem funcionais.
+- Sem mensagens reais enviadas ou tags de analytics reais; somente simulações isoladas nos testes.
+- Evidências: `/workspace/artifacts/lucrattiva-atualizacao-outubro/`. A publicação na Vercel não faz parte desta atualização. Auditorias automáticas não são certificação completa de acessibilidade.
+
+### Apresentação exclusiva das duas sócias
+
+A pedido do usuário, a seção e a página institucional passaram a apresentar somente duas sócias, com espaços explícitos de nome e foto a inserir. Foram removidos os três perfis de departamentos/funcionários da configuração. O acesso público agora é “Sócias” / “As sócias”; a URL `/equipe/` permanece por compatibilidade.
+
+Validação final: 630 verificações estáticas, 29 de interação e 304 em Chromium aprovadas. As 22 auditorias automatizadas da suíte seguem sem violações. Verificação adicional confirma os dois cartões visíveis na home, sem perfis de funcionários. Capturas em `/workspace/artifacts/lucrattiva-atualizacao-outubro/socias/`.

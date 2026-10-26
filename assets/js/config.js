@@ -3,7 +3,6 @@ window.LUCRATTIVA = {
   whatsapp: '5565999513928', // Confirmar o número antes do lançamento.
   phoneDisplay: '(65) 99951-3928',
   email: 'cristiane@lucrattivacontabilidade.com.br',
-  city: 'Nova Mutum / Mato Grosso',
   gtMId: '', // Não preencher antes de revisar container, política e consentimento.
   trackingReviewed: false, // Deve continuar false até homologar as tags de cada categoria.
   whatsappMessages: {
@@ -34,9 +33,8 @@ window.LUCRATTIVA = {
     }
   ],
   team: [
-    // Trocar os valores de exemplo pelas informações aprovadas.
-    { name: 'Direção e sociedade', role: 'Liderança da LuCrattiva', photo: '', alt: '', bio: '' },
-    { name: 'Equipe contábil', role: 'Contábil e fiscal', photo: '', alt: '', bio: '' },
-    { name: 'Equipe de atendimento', role: 'Relacionamento e suporte', photo: '', alt: '', bio: '' }
+    // Apresentação exclusiva das duas sócias. Substituir pelos dados autorizados.
+    { name: 'Nome da sócia 1', role: 'Sócia · apresentação em preparação', photo: '', alt: '', bio: '' },
+    { name: 'Nome da sócia 2', role: 'Sócia · apresentação em preparação', photo: '', alt: '', bio: '' }
   ]
 };
